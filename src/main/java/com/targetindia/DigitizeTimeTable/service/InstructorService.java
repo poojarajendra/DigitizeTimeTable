@@ -1,5 +1,6 @@
 package com.targetindia.DigitizeTimeTable.service;
 
+import com.targetindia.DigitizeTimeTable.repository.InstructorDao;
 import com.targetindia.DigitizeTimeTable.repository.TimeTableDao;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 @Service
 public class InstructorService {
     @Autowired
-    TimeTableDao dao;
+    InstructorDao dao;
 
     @Autowired
     GetDow getDow;
@@ -37,9 +38,9 @@ public class InstructorService {
     }
 
     @SneakyThrows
-    public HashMap<String, ArrayList<HashMap<String, ArrayList<String>>>> getInstructorWeeklyTimeTable(int classId){
+    public HashMap<String,HashMap<String, ArrayList<String>>> getInstructorWeeklyTimeTable(int classId){
         ResultSet resultset = dao.getInstructorWeeklyTimeTable(classId);
-        HashMap<String, ArrayList<HashMap<String, ArrayList<String>>>> hm = new HashMap<>();
+        HashMap<String, HashMap<String, ArrayList<String>>> hm = new HashMap<>();
 
         //week, slot, class, section, location
 
@@ -49,21 +50,20 @@ public class InstructorService {
             week = resultset.getString(1);
             slot = resultset.getString(2);
 
-            HashMap<String, ArrayList<String>> inner_hm = new HashMap<>();
+           
             ArrayList<String> data = new ArrayList<>();
             data.add(String.valueOf(resultset.getInt(3)));
             data.add(resultset.getString(4));
             data.add(resultset.getString(5));
-            inner_hm.put(slot, data);
             if(hm.get(week) == null){
-                ArrayList<HashMap<String, ArrayList<String>>> ls = new ArrayList<>();
-                ls.add(inner_hm);
-                hm.put(week, ls);
+                HashMap<String, ArrayList<String>> inner_hm = new HashMap<>();
+                inner_hm.put(slot,data);
+                hm.put(week, inner_hm);
             }
             else{
-                ArrayList<HashMap<String, ArrayList<String>>> ls = hm.get(week);
-                ls.add(inner_hm);
-                hm.put(week, ls);
+                HashMap<String, ArrayList<String>> inner_hm = hm.get(week);
+                inner_hm.put(slot, data);
+                hm.put(week,inner_hm);
             }
         }
         return hm;

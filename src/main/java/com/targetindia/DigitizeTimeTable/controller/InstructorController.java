@@ -22,7 +22,7 @@ public class InstructorController {
         return service.getInstructorDayTimeTable(id, day);
     }
     @GetMapping("/{id}")
-    public HashMap<String, ArrayList<HashMap<String, ArrayList<String>>>> getInstructorWeeklyTimeTable(@PathVariable int id){
+    public HashMap<String,HashMap<String, ArrayList<String>>> getInstructorWeeklyTimeTable(@PathVariable int id){
         return service.getInstructorWeeklyTimeTable(id);
     }
 }

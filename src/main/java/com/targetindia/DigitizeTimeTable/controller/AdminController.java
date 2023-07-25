@@ -54,12 +54,18 @@ public class AdminController {
         return instructors;
     }
 
-    @GetMapping("/instructors/{id}")
+    @GetMapping("/instructor/{id}")
     public Instructor getInstructorById(@PathVariable int id){
         Optional<Instructor> instructor = service.getInstructorById(id);
         System.out.println(instructor);
         return instructor.get();
     }
+//    @GetMapping("/checkavailabilityofinstructor/{id}/{slot}")
+//    public String check_availability_of_instructor(@PathVariable int id,@PathVariable String slot){
+//        String message = service.check_availability_of_instructor(id,slot);
+//        System.out.println(message);
+//        return message;
+//    }
 //    @PutMapping("/{class_id}")
 //    public String classInfo(@PathVariable int class_id){
 //        return service.updateClassInfo(class_id);

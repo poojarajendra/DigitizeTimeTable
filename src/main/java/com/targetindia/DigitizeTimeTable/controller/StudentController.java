@@ -23,7 +23,7 @@ public class StudentController {
     }
 
     @GetMapping("/{class_id}")
-    public HashMap<String, ArrayList<HashMap<String, ArrayList<String>>>> getStudentWeeklyTimeTable(@PathVariable int class_id){
+    public HashMap<String, HashMap<String, ArrayList<String>>> getStudentWeeklyTimeTable(@PathVariable int class_id){
         return service.getStudentWeeklyTimeTable(class_id);
     }
 }

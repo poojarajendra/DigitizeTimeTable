@@ -20,9 +20,9 @@ public class TimeTableDao  {
 
     Connection conn = null;
 
-    static String url="jdbc:postgresql://localhost:5433/DigitizeTimeTable";
+    static String url="jdbc:postgresql://localhost:5432/dtt";
     static String username="postgres";
-    static String password="postgres@123";
+    static String password="krishna";
 
 
 
@@ -120,79 +120,7 @@ public class TimeTableDao  {
     // slot ||intsruct_name(instr table)||   location,course_name(course table)
 
 
-    public ResultSet getStudentWeeklyTimeTable(int classId){
-        Statement statement;
-        ResultSet rs=null;
-        try{
-            String query="select time_table.week,time_table.slot,course_table.course_name,instructor_table.instructor_name,course_table.location "+
-                    "from time_table "+
-                    "inner join course_table on time_table.course_id=course_table.course_id "+
-                    "inner join instructor_table on time_table.instructor_id=instructor_table.instructor_id "+
-                    "where time_table.class_id="+classId;
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return rs;
-    }
 
-    public ResultSet getStudentDayTimeTable(int class_id, String day){
-        Statement statement;
-        ResultSet rs=null;
-        try{
-            String query="select time_table.slot,course_table.course_name,instructor_table.instructor_name,course_table.location "+
-                    "from time_table "+
-                    "inner join course_table on time_table.course_id=course_table.course_id "+
-                    "inner join instructor_table on time_table.instructor_id=instructor_table.instructor_id "+
-                    "where time_table.class_id="+class_id+" and time_table.week='"+day+"'";
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return rs;
-    }
-    public ResultSet getInstructorDayTimeTable(int instructor_id, String week){
-        Statement statement;
-        ResultSet rs=null;
-        try{
-
-            String query="select time_table.slot,class_table.class,class_table.section,course_table.location "+
-                    "from time_table "+
-                    "inner join course_table on time_table.course_id=course_table.course_id "+
-                    "inner join class_table on time_table.class_id=class_table.class_id "+
-                    "where time_table.instructor_id="+instructor_id+" and time_table.week='"+week+"'";
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-//            return rs;
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return rs;
-    }
-
-    public ResultSet getInstructorWeeklyTimeTable(int instructor_id){
-        Statement statement;
-        ResultSet rs=null;
-        try{
-
-            String query="select time_table.week, time_table.slot,class_table.class,class_table.section,course_table.location "+
-                    "from time_table "+
-                    "inner join course_table on time_table.course_id=course_table.course_id "+
-                    "inner join class_table on time_table.class_id=class_table.class_id "+
-                    "where time_table.instructor_id="+instructor_id;
-            statement=conn.createStatement();
-            rs=statement.executeQuery(query);
-        }
-        catch(Exception e){
-            System.out.println(e);
-        }
-        return rs;
-    }
     public void updateInstructor(int id, String name, long contact){
         Statement statement;
         try{

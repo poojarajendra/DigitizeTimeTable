@@ -81,4 +81,12 @@ public class AdminService {
         dao.updatePeriodInfo(classId,dow,slot);
         return "The subject info of "+dow+" "+slot+" time is updated.";
     }
+//    public String check_availability_of_instructor(int id,String slot){
+//        ResultSet result=dao.check_availability_of_instructor(id,slot);
+//        if (!result.next()) {
+//
+//        } else {
+//            // Process the ResultSet and retrieve data from columns
+//        }
+//    }
 }
