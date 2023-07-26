@@ -54,11 +54,11 @@ public class InstructorDao {
         ResultSet rs=null;
         try{
 
-            String query="select time_table.week, time_table.slot,class_table.class,class_table.section,time_table.location "+
-                    "from course_table "+
-                    "inner join time_table on course_table.course_id=time_table.course_id "+
+            String query="select time_table.week, time_table.slot,class_table.class,class_table.section,course_table.location "+
+                    "from time_table "+
+                    "inner join course_table on time_table.course_id=course_table.course_id "+
                     "inner join class_table on time_table.class_id=class_table.class_id "+
-                    "where course_table.instructor_id="+instructor_id;
+                    "where time_table.instructor_id="+instructor_id;
             statement=conn.createStatement();
             rs=statement.executeQuery(query);
         }
