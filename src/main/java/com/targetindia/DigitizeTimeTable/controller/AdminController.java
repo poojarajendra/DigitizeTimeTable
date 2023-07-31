@@ -14,52 +14,82 @@ public class AdminController {
     @Autowired
     AdminService service;
 
-    @PostMapping("/addInstructor")
+    @PostMapping("post/instructors")
     public String addInstructor(@RequestBody Instructor instructor)
     {
         return service.addInstructor(instructor);
     }
 
-    @PostMapping("/addInstructors")
-    public void addAllInstructor(@RequestBody List<Instructor> ins)
-    {
-        service.addAllInstructors(ins);
-    }
-//   //instructor data in obj format
-//
-//    @PutMapping("/updateInstructor")
-//    public void updateInstructor(@RequestBody Instructor instr){
-//        service.updateInstructor(instr);
-//    }
-
-    @PutMapping("/updateInstructor/{id}/{name}/{contact}")
+    @PutMapping("/put/instructors/instructor_id/{id}/instructor_name/{name}/instructor_contact/{contact}")
     public String updateInstructor(@PathVariable int id, @PathVariable String name, @PathVariable long contact){
         return service.updateInstructor(id,name,contact);
     }
 
-    @DeleteMapping("/deleteInstructor/{id}")
+    @DeleteMapping("/delete/instructors/{id}")
     public String deleteInstructor(@PathVariable int id){
         return service.deleteInstructorById(id);
     }
 
-    @PutMapping("/{class_id}/{dow}/{slot}")
-    public String updatePeriodInfo(@PathVariable int class_id, @PathVariable String dow, @PathVariable String slot){
-        return service.updatePeriodInfo(class_id,dow,slot);
-    }
-
-    @GetMapping("/instructors")
+    @GetMapping("GET/instructors")
     public List<Instructor> getAllInstructors(){
         List<Instructor> instructors = service.getAllInstructors();
         System.out.println(instructors);
         return instructors;
     }
 
-    @GetMapping("/instructor/{id}")
+    @GetMapping("GET/instructors/{id}")
     public Instructor getInstructorById(@PathVariable int id){
         Optional<Instructor> instructor = service.getInstructorById(id);
         System.out.println(instructor);
         return instructor.get();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+//    @GetMapping("GET/students/{id}")
+//    public student getStudentById(@PathVariable int id){
+//        Optional<Student> student=service.getStudentById(id);
+//        System.out.println(student);
+//        return student.get();
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    @GetMapping("/checkavailabilityofinstructor/{id}/{slot}")
 //    public String check_availability_of_instructor(@PathVariable int id,@PathVariable String slot){
 //        String message = service.check_availability_of_instructor(id,slot);

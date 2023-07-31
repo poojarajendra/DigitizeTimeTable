@@ -1,7 +1,7 @@
 package com.targetindia.DigitizeTimeTable.service;
 
 import com.targetindia.DigitizeTimeTable.DbSettings;
-import com.targetindia.DigitizeTimeTable.repository.TimeTableDao;
+import com.targetindia.DigitizeTimeTable.repository.AdminDao;
 import com.targetindia.DigitizeTimeTable.model.Instructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class AdminService {
     DbSettings dbSettings;
 
     @Autowired
-    TimeTableDao dao;
+    AdminDao dao;
 
 
 
@@ -68,19 +68,19 @@ public class AdminService {
 
     }
 
-    public void addAllInstructors(List<Instructor> instructor){
-        dao.addAllInstructors(instructor);
-    }
+//    public void addAllInstructors(List<Instructor> instructor){
+//        dao.addAllInstructors(instructor);
+//    }
 
-//    public void updateInstructor(Instructor instructor){
-//        dao.updateInstructor(instructor);
+//    public void updateInstructor(int id,String name,long contact){
+//        dao.updateInstructor(id,name,contact);
 //    }
 
 
-    public String updatePeriodInfo(int classId, String dow, String slot) {
-        dao.updatePeriodInfo(classId,dow,slot);
-        return "The subject info of "+dow+" "+slot+" time is updated.";
-    }
+//    public String updatePeriodInfo(int classId, String dow, String slot) {
+//        dao.updatePeriodInfo(classId,dow,slot);
+//        return "The subject info of "+dow+" "+slot+" time is updated.";
+//    }
 //    public String check_availability_of_instructor(int id,String slot){
 //        ResultSet result=dao.check_availability_of_instructor(id,slot);
 //        if (!result.next()) {

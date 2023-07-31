@@ -1,7 +1,6 @@
 package com.targetindia.DigitizeTimeTable.service;
 
 import com.targetindia.DigitizeTimeTable.repository.InstructorDao;
-import com.targetindia.DigitizeTimeTable.repository.TimeTableDao;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

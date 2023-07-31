@@ -1,22 +1,14 @@
 package com.targetindia.DigitizeTimeTable.repository;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
-import com.targetindia.DigitizeTimeTable.DbSettings;
 import com.targetindia.DigitizeTimeTable.model.Instructor;
-import lombok.Value;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class TimeTableDao  {
+public class AdminDao {
 
     Connection conn = null;
 
@@ -26,7 +18,7 @@ public class TimeTableDao  {
 
 
 
-    public TimeTableDao() {
+    public AdminDao() {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -89,16 +81,17 @@ public class TimeTableDao  {
             statement.executeQuery();
         }
         catch(SQLException e){
+            System.out.println(e);
             throw new RuntimeException("Insertion failed");
         }
     }
-    public void addAllInstructors(List<Instructor> instructors){
-        int count = instructors.size();
-
-        for(int i=0; i<count; i++){
-            addInstructor(instructors.get(i));
-        }
-    }
+//    public void addAllInstructors(List<Instructor> instructors){
+//        int count = instructors.size();
+//
+//        for(int i=0; i<count; i++){
+//            addInstructor(instructors.get(i));
+//        }
+//    }
 
 //    public void updateInstructor(Instructor instr){
 //        try{
@@ -163,10 +156,6 @@ public class TimeTableDao  {
         catch(Exception e){
             System.out.println(e);
         }
-    }
-
-    public void updatePeriodInfo(int classId, String dow, String slot) {
-
     }
 }
 

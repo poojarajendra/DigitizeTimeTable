@@ -17,11 +17,11 @@ public class InstructorController {
     @Autowired
     InstructorService service;
 
-    @GetMapping("/{id}/{day}")
+    @GetMapping("GET/time_table/instructors_id/{id}/day/{day}")
     public HashMap<String, ArrayList<String>> getInstructorDayTimeTable(@PathVariable int id, @PathVariable String day){
         return service.getInstructorDayTimeTable(id, day);
     }
-    @GetMapping("/{id}")
+    @GetMapping("GET/time_table/{id}")
     public HashMap<String,HashMap<String, ArrayList<String>>> getInstructorWeeklyTimeTable(@PathVariable int id){
         return service.getInstructorWeeklyTimeTable(id);
     }
