@@ -8,28 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class AdminDao {
-
-    Connection conn = null;
-
-    static String url="jdbc:postgresql://localhost:5432/dtt";
-    static String username="postgres";
-    static String password="krishna";
-
-
-
-    public AdminDao() {
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
-        }
-        System.out.println("Opened database successfully");
-    }
+public class AdminDao extends ConnetionDao{
 
     public ResultSet findInstructorById(int id){
         ResultSet result;
@@ -85,34 +64,6 @@ public class AdminDao {
             throw new RuntimeException("Insertion failed");
         }
     }
-//    public void addAllInstructors(List<Instructor> instructors){
-//        int count = instructors.size();
-//
-//        for(int i=0; i<count; i++){
-//            addInstructor(instructors.get(i));
-//        }
-//    }
-
-//    public void updateInstructor(Instructor instr){
-//        try{
-//
-//            findInstructorById(instr.getInstructor_id());
-//            String query = "update instructor_table set contact=?, instructor_name=? where instructor_id=?";
-//            PreparedStatement preparedStmt = conn.prepareStatement(query);
-//            preparedStmt.setLong(1, instr.getInstructor_contact());
-//            preparedStmt.setString(2, instr.getInstructor_name());
-//            preparedStmt.setInt(3, instr.getInstructor_id());
-//            preparedStmt.executeUpdate();
-//
-//        }
-//        catch(SQLException e) {
-//            throw new RuntimeException("Update Failed!");
-//        }
-//    }
-
-    // slot ||intsruct_name(instr table)||   location,course_name(course table)
-
-
 
     public void updateInstructor(int id, String name, long contact){
         Statement statement;
@@ -158,5 +109,34 @@ public class AdminDao {
         }
     }
 }
+
+
+//    public void addAllInstructors(List<Instructor> instructors){
+//        int count = instructors.size();
+//
+//        for(int i=0; i<count; i++){
+//            addInstructor(instructors.get(i));
+//        }
+//    }
+
+//    public void updateInstructor(Instructor instr){
+//        try{
+//
+//            findInstructorById(instr.getInstructor_id());
+//            String query = "update instructor_table set contact=?, instructor_name=? where instructor_id=?";
+//            PreparedStatement preparedStmt = conn.prepareStatement(query);
+//            preparedStmt.setLong(1, instr.getInstructor_contact());
+//            preparedStmt.setString(2, instr.getInstructor_name());
+//            preparedStmt.setInt(3, instr.getInstructor_id());
+//            preparedStmt.executeUpdate();
+//
+//        }
+//        catch(SQLException e) {
+//            throw new RuntimeException("Update Failed!");
+//        }
+//    }
+
+// slot ||intsruct_name(instr table)||   location,course_name(course table)
+
 
 

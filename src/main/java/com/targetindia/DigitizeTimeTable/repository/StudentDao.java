@@ -8,27 +8,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 @Repository
-public class StudentDao {
-    Connection conn = null;
+public class StudentDao extends ConnetionDao {
 
-    static String url="jdbc:postgresql://localhost:5432/dtt";
-    static String username="postgres";
-    static String password="krishna";
-
-
-
-    public StudentDao() {
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
-        }
-        System.out.println("Opened database successfully");
-    }
     public ResultSet getStudentWeeklyTimeTable(int classId){
         Statement statement;
         ResultSet rs=null;

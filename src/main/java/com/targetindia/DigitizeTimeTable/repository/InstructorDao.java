@@ -7,28 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 @Repository
-public class InstructorDao {
-    Connection conn = null;
-
-    static String url="jdbc:postgresql://localhost:5432/dtt";
-    static String username="postgres";
-    static String password="krishna";
-
-
-
-    public  InstructorDao() {
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
-        }
-        System.out.println("Opened database successfully");
-    }
-
+public class InstructorDao extends ConnetionDao{
 
     public ResultSet getInstructorDayTimeTable(int instructor_id, String week){
         Statement statement;
