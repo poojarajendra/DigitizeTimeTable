@@ -12,9 +12,10 @@ import org.springframework.stereotype.Repository;
 public class AdminDao{
 
     Connection conn;
-    @Autowired
+
     ConnectionDao connectionDao;
     AdminDao(){
+        connectionDao = new ConnectionDao();
         conn = connectionDao.getDBConnection();
         System.out.println("Opened database successfully");
     }
