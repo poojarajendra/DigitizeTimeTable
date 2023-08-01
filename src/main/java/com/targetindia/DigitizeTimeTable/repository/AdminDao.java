@@ -4,12 +4,24 @@ import java.util.List;
 
 
 import com.targetindia.DigitizeTimeTable.model.Instructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class AdminDao extends ConnetionDao{
+public class AdminDao{
 
+    Connection conn;
+    @Autowired
+    ConnectionDao connectionDao;
+    AdminDao(){
+        conn = connectionDao.getDBConnection();
+        System.out.println("Opened database successfully");
+    }
+
+    AdminDao(Connection conn){
+        this.conn = conn;
+    }
     public ResultSet findInstructorById(int id){
         ResultSet result;
         try {
