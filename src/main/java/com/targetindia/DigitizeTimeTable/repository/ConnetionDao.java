@@ -3,14 +3,14 @@ package com.targetindia.DigitizeTimeTable.repository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnetionDao {
+public class ConnectionDao {
     Connection conn = null;
 
     static String url="jdbc:postgresql://localhost:5432/dtt";
     static String username="postgres";
     static String password="krishna";
 
-    public ConnetionDao() {
+    public Connection getDBConnection() {
 
         try {
             Class.forName("org.postgresql.Driver");
@@ -20,7 +20,7 @@ public class ConnetionDao {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+        return conn;
     }
 
 }
