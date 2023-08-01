@@ -10,9 +10,9 @@ import java.sql.Statement;
 public class InstructorDao{
 
     Connection conn;
-    @Autowired
     ConnectionDao connectionDao;
     InstructorDao(){
+        connectionDao = new ConnectionDao() ;
         conn = connectionDao.getDBConnection();
         System.out.println("Opened database successfully");
     }
