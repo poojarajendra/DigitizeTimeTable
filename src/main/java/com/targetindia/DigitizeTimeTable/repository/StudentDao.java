@@ -1,15 +1,26 @@
 package com.targetindia.DigitizeTimeTable.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 @Repository
-public class StudentDao extends ConnetionDao {
+public class StudentDao {
 
+    Connection conn;
+    @Autowired
+    ConnectionDao connectionDao;
+    StudentDao(){
+        conn = connectionDao.getDBConnection();
+        System.out.println("Opened database successfully");
+    }
+
+    StudentDao(Connection conn){
+        this.conn = conn;
+    }
     public ResultSet getStudentWeeklyTimeTable(int classId){
         Statement statement;
         ResultSet rs=null;
