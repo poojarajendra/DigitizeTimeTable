@@ -1,0 +1,20 @@
+package com.targetindia.DigitizeTimeTable.controller;
+
+import com.targetindia.DigitizeTimeTable.service.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/login")
+public class LoginController {
+    @Autowired
+    LoginService service;
+    @GetMapping("/{role}/{id}")
+    public void login(@PathVariable String role,@PathVariable int id){
+        System.out.println(service.login(role, id));
+        //return service.login(role, id);
+    }
+}
