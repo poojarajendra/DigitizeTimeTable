@@ -10,9 +10,9 @@ import java.sql.*;
 @Repository
 public class LoginDao {
     Connection conn;
-    @Autowired
     ConnectionDao connectionDao;
     LoginDao(){
+        connectionDao = new ConnectionDao();
         conn = connectionDao.getDBConnection();
         System.out.println("Opened database successfully");
     }
